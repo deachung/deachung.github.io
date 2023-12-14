@@ -1,0 +1,45 @@
+<html>
+  <head>
+    <!--구글 차트 Libraray를 불러옵니다. 수정 필요 없음.-->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+    
+      // Visualizaion API와 코어차트 패키지를 로딩합니다. 수정 필요 없음.
+      google.charts.load('current', {'packages':['corechart']});
+
+      // Visualization API가 로딩되었을 때, drawChart 함수를 실행시킵니다. 수정 필요 없음.
+      google.charts.setOnLoadCallback(drawChart);
+
+      // 앱인벤터에서 차트를 그리기 위해 받아올 데이터를 위한 변수를 만듭니다. 수정 필요 없음.
+      Appdata = window.AppInventor.getWebViewString();
+
+      // 구글 차트에 데이터를 리스트로 전달하기 위해 변수를 만들고, 자바스크립트 배열로 바꿉니다. 수정 필요 없음.
+      var array = JSON.parse(Appdata);
+
+
+      function drawChart() {
+
+        // 구글 차트에 데이터를 입력합니다. 수정 필요 없음.
+        var data = new google.visualization.arrayToDataTable(array);
+
+        // 차트 모양에 대한 옵션 설정입니다.
+        // 자신이 원하는 모양을 위해 수정이 필요합니다.
+        // 구글 차트 모양에 대한 옵션은 https://developers.google.com/chart/interactive/docs/gallery 접속 후
+        // 원하는 차트 선택, Configuration Options를 참고합니다.
+        var options = {
+          chartArea:{left:'auto',top:0,width:'50%',height:'auto'},
+          legend:{alignment: 'center'}
+        };
+
+        // 차트를 그립니다. 수정 필요 없음.
+        var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+        chart.draw(data, options);
+      }
+    </script>
+  </head>
+
+  <body>
+    <!--실제 문서에서 차트가 보이는 영역입니다.-->
+    <div id="chart_div"></div>
+  </body>
+</html>
